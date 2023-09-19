@@ -6,11 +6,11 @@ variable "dr_pvs_region" {
 variable "ssh_key_name" {
   description = "Name of the ssh key to be used"
   type        = string
-  default     = "test_ssh"
+  default     = "mysshkey"
 }
 
 variable "ssh_key_rsa" {
   description = "Public ssh key"
   type        = string
-  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5z4xt0DntJzFKbK897Y5wqYiem+1RNACwsA5VvPa8U3rp+83bxwKsvPfSfT9QptXvpBiZ6r7/FkxAG4Hv9d5yOQnBBzO0OfKulYB2C7DDXCCaWJgCTNk7wvI0Y+TuNcWo6mH2nl4GNx2BpmVbH0qpRyD1zUhfQe22StaMCMdHpyqpy09GMpglofIIRU4c+uDCElsD2mwKu4dVETpgRxmcKVK7fAORz43d8OU9aGFmN2Pkzb8cKyhL1BFt4y2nZerYeLaFzFeCI7OXcBdwcqBLFniDfctvJU7p/S8eKh6EtIwSmbWpLXPFu9StomWxRx43bPRmKR5kDfijUejlw8b4DMBMD03D1dLVmPBIcA1ywuha5XkWP3mFw3/7dYnsoy3F8LuWeqETd4BaWIwVaCSJKXN9kGT7WWqUF3cr7crfn3jiBcl/Pkg/4t/ObcxGddkYG10D/IqwegbcYvk1NOhiXOUhJNweH1Bj5tpyQj6LicmtNifLBqJg47FQZkLO5dVD/K+LShMH2KUio904n4ObyOvRtin9YiH3Mz8qnCiah9khaeQ05OPXDpR2l6D5IOmkFgyq2TIKvCKPSlqFtA4zCH5em0A5JJ2l4MNIQCA45q4ZeCxpMTBATWE5BIIBc/KWD355poKXD3JogBuc0uke+AIpPQcIUcx5Ej+/T1S3Sw== Tech Academy"
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC81/IS6vSLOvl8Jdbo/cY4w9WHz7bmEggdY0grNMPkDRowEKXy9QgfOopymvhBdwipDDKJBGTw8k3lxoL2Iz9kIfD2LMn5EVC5utMvbQrIDwnD3mYaxFhGxHqCDiB7PvIi2d0H0MGYjdCmEhv8rtjmD+q5rfUC5Ficjtgok34WzdphAndY7ckrBr3wOL/O3Jjz3lgyEFCx7c+SK38ZM7u9BWuNhhUXTssfAwlzmKbwTrDBSwCbXV02JqkNja+LzHangGVSIMiZwRnPbMiybiS36C2wvxmlEFgI3v03vE5610a8nKeh5+CPW+onA7kwxHnppVJxD7LLm/2RLpTOVPdA5e/bZtt6hLGs/cZaCIgNC/e7krqjEy4Iw5ZRPBrUibRWcpxewk0fI9Ue5R7zCN/DYO9pY+48wHeX65V1mnggOGoJtqDyLORSmIr5AWvIKpIIyhj7wwELkYPeCBjypxVkhq10GJL3IpKgR/gh3cITwLF8Uq7mkBsK86c2MfhqyM7Z7/I2OCQokjvXgvyN1HN2Lt5HKkNTsN1Al9+VfUj36BRzeNANmT17pNPutmjPWOTzAIAoBCr0q+ctcZpqfK05hC28AUFgyDxaLiiJLaCRMtkKG62xbdEWauJHYRXWTbax/oAwLZ4uMGN6dt11yJdzauHGUXeRFwxWHuzqzntVmw== Tech Academy"
 }
