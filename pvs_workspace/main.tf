@@ -15,3 +15,7 @@ resource "ibm_pi_key" "key" {
   pi_key_name          = var.ssh_key_name
   pi_ssh_key           = var.ssh_key_rsa
 }
+
+output "guid" {
+    value = ibm_resource_instance.pvs_test.guid
+}
