@@ -7,7 +7,7 @@ resource "ibm_resource_instance" "pvs_test" {
   service           = "power-iaas"
   location          = var.dr_pvs_region
   plan              = "power-virtual-server-group"
-  resource_group_id = data.ibm_resource_group.group.id
+  resource_group_id = data.ibm_resource_group.resource_group_ds.id
 }
 
 resource "ibm_pi_key" "key" {
