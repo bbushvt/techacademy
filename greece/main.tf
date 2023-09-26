@@ -18,6 +18,4 @@ resource "ibm_pi_image" "aix_image" {
   pi_image_bucket_region = var.bucket_region
   pi_image_bucket_file_name = var.bucket_file_name
   pi_image_storage_type = var.storage_type
-
-  
 }
