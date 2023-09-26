@@ -5,7 +5,7 @@ data "ibm_resource_group" "group" {
 resource "ibm_resource_instance" "pvs_workspace" {
   name              = var.workspace_name
   service           = "power-iaas"
-  location          = var.dr_pvs_region
+  location          = var.pvs_region
   plan              = "power-virtual-server-group"
   resource_group_id = data.ibm_resource_group.group.id
 }
