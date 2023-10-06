@@ -30,17 +30,16 @@ resource "ibm_pi_key" "key" {
 resource "ibm_is_vpc" "test_vpc_vpc" {
   name                        = var.vpc_name
   resource_group              = data.ibm_resource_group.default.id
-  default_network_acl_name    = null
-  default_security_group_name = null
-  default_routing_table_name  = null
-  provider = ibm.vpc
+  address_prefix_management   = "manual"
+  provider                    = ibm.vpc
+  default_network_acl_name    = "test_vpc_main_acl_acl"
 }
 
 resource "ibm_is_vpc_address_prefix" "test_vpc_test_vpc_zone_1_prefix" {
   name = "${var.vpc_name}-test-vpc-test-vpc-zone-1"
   vpc  = ibm_is_vpc.test_vpc_vpc.id
   zone = "${var.vpc_region}-1"
-  cidr = "10.10.0.0/22"
+  cidr = "10.241.0.0/18"
   provider = ibm.vpc
 }
 
@@ -48,7 +47,7 @@ resource "ibm_is_vpc_address_prefix" "test_vpc_test_vpc_zone_2_prefix" {
   name = "${var.vpc_name}-test-vpc-test-vpc-zone-2"
   vpc  = ibm_is_vpc.test_vpc_vpc.id
   zone = "${var.vpc_region}-2"
-  cidr = "10.20.0.0/22"
+  cidr = "10.241.64.0/18"
   provider = ibm.vpc
 }
 
@@ -56,7 +55,7 @@ resource "ibm_is_vpc_address_prefix" "test_vpc_test_vpc_zone_3_prefix" {
   name = "${var.vpc_name}-test-vpc-test-vpc-zone-3"
   vpc  = ibm_is_vpc.test_vpc_vpc.id
   zone = "${var.vpc_region}-3"
-  cidr = "10.30.0.0/22"
+  cidr = "10.241.128.0/18"
   provider = ibm.vpc
 }
 
@@ -78,5 +77,48 @@ resource "ibm_is_network_acl" "test_vpc_main_acl_acl" {
     direction   = "outbound"
     name        = "outbound"
     source      = "0.0.0.0/0"
+  }
+}
+
+resource "ibm_is_subnet" "test_vpc_main_zone_1" {
+  vpc             = ibm_is_vpc.test_vpc_vpc.id
+  name            = "test-vpc-main-zone-1"
+  zone            = "${var.vpc_region}-1"
+  resource_group  = data.ibm_resource_group.default.id
+  network_acl     = ibm_is_network_acl.test_vpc_main_acl_acl.id
+  ipv4_cidr_block = "10.241.0.0/28"
+  tags = []
+  depends_on = [
+    ibm_is_vpc_address_prefix.test_vpc_test_vpc_zone_1_prefix
+  ]
+}
+
+##############################################################################
+# Custom Dns DNS Service
+##############################################################################
+
+resource "ibm_resource_instance" "custom_dns_dns_instance" {
+  name              = "custom-dns-dns-instance"
+  resource_group_id = data.ibm_resource_group.default.id
+  location          = "global"
+  service           = "dns-svcs"
+  plan              = "standard-dns"
+}
+
+##############################################################################
+
+##############################################################################
+# Custom Dns DNS Custom Resolvers
+##############################################################################
+
+resource "ibm_dns_custom_resolver" "custom_dns_dns_instance_resolver_myresolver" {
+  name              = "myresolver"
+  instance_id       = ibm_resource_instance.custom_dns_dns_instance.guid
+  description       = ""
+  high_availability = false
+  enabled           = true
+  locations {
+    subnet_crn = module.test_vpc_vpc.test_vpc_main_zone_1.crn
+    enabled    = true
   }
 }
