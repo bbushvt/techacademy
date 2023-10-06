@@ -60,3 +60,23 @@ resource "ibm_is_vpc_address_prefix" "test_vpc_test_vpc_zone_3_prefix" {
   provider = ibm.vpc
 }
 
+resource "ibm_is_network_acl" "test_vpc_main_acl_acl" {
+  name           = "test-vpc-main-acl-acl"
+  vpc            = ibm_is_vpc.test_vpc_vpc.id
+  resource_group = data.ibm_resource_group.default.id
+  provider = ibm.vpc
+  rules {
+    action      = "allow"
+    destination = "0.0.0.0/0"
+    direction   = "inbound"
+    name        = "inbound"
+    source      = "0.0.0.0/0"
+  }
+  rules {
+    action      = "allow"
+    destination = "0.0.0.0/0"
+    direction   = "outbound"
+    name        = "outbound"
+    source      = "0.0.0.0/0"
+  }
+}
