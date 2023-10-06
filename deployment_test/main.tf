@@ -120,7 +120,7 @@ resource "ibm_dns_custom_resolver" "custom_dns_dns_instance_resolver_myresolver"
   enabled           = true
   provider          = ibm.vpc
   locations {
-    subnet_crn = module.test_vpc_vpc.test_vpc_main_zone_1.crn
+    subnet_crn = ibm_is_subnet.test_vpc_main_zone_1.crn
     enabled    = true
   }
 }
