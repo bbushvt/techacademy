@@ -32,7 +32,6 @@ resource "ibm_is_vpc" "test_vpc_vpc" {
   resource_group              = data.ibm_resource_group.default.id
   address_prefix_management   = "manual"
   provider                    = ibm.vpc
-  default_network_acl_name    = "test_vpc_main_acl_acl"
 }
 
 resource "ibm_is_vpc_address_prefix" "test_vpc_test_vpc_zone_1_prefix" {
@@ -91,6 +90,7 @@ resource "ibm_is_subnet" "test_vpc_main_zone_1" {
   depends_on = [
     ibm_is_vpc_address_prefix.test_vpc_test_vpc_zone_1_prefix
   ]
+  provider = ibm.vpc
 }
 
 ##############################################################################
@@ -103,6 +103,7 @@ resource "ibm_resource_instance" "custom_dns_dns_instance" {
   location          = "global"
   service           = "dns-svcs"
   plan              = "standard-dns"
+  provider          = ibm.vpc
 }
 
 ##############################################################################
@@ -117,6 +118,7 @@ resource "ibm_dns_custom_resolver" "custom_dns_dns_instance_resolver_myresolver"
   description       = ""
   high_availability = false
   enabled           = true
+  provider          = ibm.vpc
   locations {
     subnet_crn = module.test_vpc_vpc.test_vpc_main_zone_1.crn
     enabled    = true
