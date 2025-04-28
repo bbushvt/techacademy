@@ -21,6 +21,7 @@ resource "ibm_pi_network" "power_networks" {
   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
   pi_network_type      = "vlan"
   pi_cidr              = "172.16.0.0/24"
+  provider             = ibm.a
 }
 
 
