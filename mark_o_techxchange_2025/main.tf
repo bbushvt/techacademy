@@ -23,11 +23,13 @@ resource "ibm_pi_network" "pvs_network_workspace_a" {
     pi_starting_ip_address  = "192.168.0.2"
     pi_ending_ip_address    = "192.168.0.254"
   }
+  provider             = ibm.a
 }
 
 resource "ibm_pi_image" "aix73"{
-  pi_image_id         = "91e60650-3aa2-4d1c-afee-e649b53e170a"
+  pi_image_id          = "91e60650-3aa2-4d1c-afee-e649b53e170a"
   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.id
+  provider             = ibm.a
 }
 
 
