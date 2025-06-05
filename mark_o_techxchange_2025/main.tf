@@ -29,6 +29,7 @@ resource  "ibm_pi_key" "ssh_key" {
   pi_key_name          = "techxchange ssh key"
   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
   pi_ssh_key           = var.ssh_key_rsa
+  provider             = ibm.a
 }
 
 resource "ibm_pi_instance" "test-instance" {
