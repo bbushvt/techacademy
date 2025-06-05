@@ -12,7 +12,6 @@ resource "ibm_resource_instance" "pvs_workspace_a" {
 }
 
 resource "ibm_pi_network" "pvs_network_workspace_a" {
-  count                = 1
   pi_network_name      = "main"
   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
   pi_network_type      = "vlan"
@@ -38,7 +37,7 @@ resource "ibm_pi_instance" "test-instance" {
     pi_instance_name      = "test-vm"
     pi_proc_type          = "shared"
     pi_image_id           = "91e60650-3aa2-4d1c-afee-e649b53e170a"
-    pi_key_pair_name      = ibm_pi_key.ssh_key.key_id
+    pi_key_pair_name      = ibm_pi_key.ssh_key.name
     pi_sys_type           = "s1022"
     pi_cloud_instance_id  = ibm_resource_instance.pvs_workspace_a.guid
     pi_pin_policy         = "none"
