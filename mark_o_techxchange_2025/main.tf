@@ -26,11 +26,25 @@ resource "ibm_pi_network" "pvs_network_workspace_a" {
   provider             = ibm.a
 }
 
-resource "ibm_pi_image" "aix73"{
-  pi_image_id          = "91e60650-3aa2-4d1c-afee-e649b53e170a"
-  pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
-  provider             = ibm.a
+resource "ibm_pi_instance" "test-instance" {
+    pi_memory             = "4"
+    pi_processors         = "2"
+    pi_instance_name      = "test-vm"
+    pi_proc_type          = "shared"
+    pi_image_id           = "91e60650-3aa2-4d1c-afee-e649b53e170a"
+    pi_key_pair_name      = ibm_pi_key.key.key_id
+    pi_sys_type           = "s1022"
+    pi_cloud_instance_id  = ibm_resource_instance.pvs_workspace_a.guid
+    pi_pin_policy         = "none"
+    pi_health_status      = "WARNING"
+    pi_network {
+      network_id          = ibm_pi_network.pvs_network_workspace_a.id
+      ip_address          = "192.168.0.10"
+    }
+    provider              = ibm.a
 }
+
+
 
 
 
