@@ -38,7 +38,7 @@ variable "ssh_key_rsa" {
 variable "vpc_region" {
   description = "IBM Cloud Region where resources will be provisioned"
   type        = string
-  default     = "us-south"
+  default     = "us-east"
   validation {
     error_message = "Region must be in a supported IBM VPC region."
     condition     = contains(["us-south", "us-east", "br-sao", "ca-tor", "eu-gb", "eu-de", "jp-tok", "jp-osa", "au-syd"], var.vpc_region)
@@ -51,4 +51,17 @@ variable "vpc_name" {
   default = "myvpc"
 }
 
+variable "vpc_image_id" {
+  default = "r014-2dfb4fd7-2af0-4df0-a8e1-97eaa04b6156"
+  description = "The image id used for the VSI in the VPC"
+}
+
+variable "vsi_profile" {
+  default = "cx2-2x4"
+  description = "The default profile to use, a cx2-2x4"
+}
+
+variable "vpc_zone" {
+  default = "us-east-1"  
+}
 

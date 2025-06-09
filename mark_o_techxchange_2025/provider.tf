@@ -53,3 +53,8 @@ provider "ibm" {
     zone                = var.pvs_region_b
     alias               = "b"
 }
+
+provider "ibm" {
+    region              = var.vpc_region
+    alias               = "vpc"
+}
