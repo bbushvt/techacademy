@@ -87,12 +87,12 @@ resource "ibm_pi_network" "pvs_network_workspace_b" {
 }
 
 # Create the ssh key in the workspace in region B
-resource  "ibm_pi_key" "ssh_key_b" {
-  pi_key_name          = "techxchange_ssh_key"
-  pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_b.guid
-  pi_ssh_key           = var.ssh_key_rsa
-  provider             = ibm.b
-}
+# resource  "ibm_pi_key" "ssh_key_b" {
+#   pi_key_name          = "techxchange_ssh_key_b"
+#   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_b.guid
+#   pi_ssh_key           = var.ssh_key_rsa
+#   provider             = ibm.b
+# }
 
 
 ########################################################
@@ -152,7 +152,7 @@ resource "ibm_is_subnet" "test_vpc_main_zone_1" {
   zone            = "${var.vpc_region}-1"
   resource_group  = data.ibm_resource_group.group.id
   network_acl     = ibm_is_network_acl.test_vpc_main_acl_acl.id
-  ipv4_cidr_block = "10.241.0.0/28"
+  ipv4_cidr_block = "192.168.2.0/24"
   tags = []
   depends_on = [
     ibm_is_vpc_address_prefix.test_vpc_test_vpc_zone_1_prefix
