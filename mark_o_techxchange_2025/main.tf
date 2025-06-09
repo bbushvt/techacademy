@@ -31,7 +31,7 @@ resource "ibm_pi_network" "pvs_network_workspace_a" {
 }
 
 # Create an SSH key 
-resource  "ibm_pi_key" "ssh_key" {
+resource  "ibm_pi_key" "ssh_key_a" {
   pi_key_name          = "techxchange_ssh_key"
   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
   pi_ssh_key           = var.ssh_key_rsa
@@ -45,7 +45,7 @@ resource  "ibm_pi_key" "ssh_key" {
 #     pi_instance_name      = "test-vm"
 #     pi_proc_type          = "shared"
 #     pi_image_id           = "91414a26-212a-4780-83cf-330f192f2225"
-#     pi_key_pair_name      = ibm_pi_key.ssh_key.name
+#     pi_key_pair_name      = ibm_pi_key.ssh_key_a.name
 #     pi_sys_type           = "s1022"
 #     pi_cloud_instance_id  = ibm_resource_instance.pvs_workspace_a.guid
 #     pi_pin_policy         = "none"
@@ -62,7 +62,7 @@ resource  "ibm_pi_key" "ssh_key" {
 ########################################################
 
 # Create a workspace in region B
-resource "ibm_resource_instance" "pvs_workspace_a" {
+resource "ibm_resource_instance" "pvs_workspace_b" {
   name              = var.workspace_name_b
   service           = "power-iaas"
   location          = var.pvs_region_b
@@ -72,7 +72,7 @@ resource "ibm_resource_instance" "pvs_workspace_a" {
 }
 
 # Create a network in the workspace in region B
-resource "ibm_pi_network" "pvs_network_workspace_a" {
+resource "ibm_pi_network" "pvs_network_workspace_b" {
   pi_network_name      = "main"
   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_b.guid
   pi_network_type      = "vlan"
@@ -87,9 +87,9 @@ resource "ibm_pi_network" "pvs_network_workspace_a" {
 }
 
 # Create the ssh key in the workspace in region B
-resource  "ibm_pi_key" "ssh_key" {
+resource  "ibm_pi_key" "ssh_key_b" {
   pi_key_name          = "techxchange_ssh_key"
-  pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
+  pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_b.guid
   pi_ssh_key           = var.ssh_key_rsa
   provider             = ibm.b
 }
