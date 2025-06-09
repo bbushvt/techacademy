@@ -120,7 +120,7 @@ resource "ibm_is_vpc_address_prefix" "test_vpc_test_vpc_zone_1_prefix" {
 resource "ibm_is_network_acl" "test_vpc_main_acl_acl" {
   name           = "test-vpc-main-acl-acl"
   vpc            = ibm_is_vpc.admin_vpc.id
-  resource_group = data.ibm_resource_group.default.id
+  resource_group = data.ibm_resource_group.group.id
   provider = ibm.vpc
   rules {
     action      = "allow"
@@ -150,7 +150,7 @@ resource "ibm_is_subnet" "test_vpc_main_zone_1" {
   vpc             = ibm_is_vpc.admin_vpc.id
   name            = "test-vpc-main-zone-1"
   zone            = "${var.vpc_region}-1"
-  resource_group  = data.ibm_resource_group.default.id
+  resource_group  = data.ibm_resource_group.group.id
   network_acl     = ibm_is_network_acl.test_vpc_main_acl_acl.id
   ipv4_cidr_block = "10.241.0.0/28"
   tags = []
