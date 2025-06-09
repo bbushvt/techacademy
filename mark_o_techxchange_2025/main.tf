@@ -166,7 +166,7 @@ resource "ibm_is_instance" "instance1" {
   image               = var.vpc_image_id
   profile             = var.vsi_profile
   primary_network_interface {
-    subnet            = ibm_is_subnet.test_vpc_main_zone_1
+    subnet            = ibm_is_subnet.test_vpc_main_zone_1.id
   }
   vpc                 = ibm_is_vpc.admin_vpc.id
   zone                = var.vpc_zone
