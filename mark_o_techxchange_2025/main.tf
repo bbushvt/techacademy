@@ -143,6 +143,7 @@ resource "ibm_is_ssh_key" "vpc_ssh_key" {
   name          = var.ssh_key_name
   public_key    = var.ssh_key_rsa
   type          = "rsa"
+  provider      = ibm.vpc
 }
 
 # Create a subnet from the prefix and using the ACL we created
