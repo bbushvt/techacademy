@@ -182,6 +182,7 @@ resource "ibm_tg_gateway" "main_tgw" {
   location            = var.vpc_region
   resource_group      = data.ibm_resource_group.group.id
   global              = true
+  provider            = ibm.vpc
 }
 
 # Connection for PowerVS Workspace A
@@ -190,4 +191,6 @@ resource "ibm_tg_connection" "pvs_workspace_a" {
   name                = "powervs_workspace_a"
   network_type        = "power_virtual_server"
   network_id          = ibm_resource_instance.powervs_workspace_a.id
+  provider            = ibm.vpc
 }
+
