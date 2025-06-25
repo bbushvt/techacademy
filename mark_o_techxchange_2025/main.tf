@@ -175,3 +175,11 @@ resource "ibm_is_instance" "instance1" {
   resource_group      = data.ibm_resource_group.group.id
   provider            = ibm.vpc
 }
+
+# Create the Transit Gateway
+resource "ibm_tg_gateway" "main_tgw" {
+  name                = "main_tgw"
+  location            = var.vpc_region
+  resource_group      = data.ibm_resource_group.group.id
+  global              = true
+}
