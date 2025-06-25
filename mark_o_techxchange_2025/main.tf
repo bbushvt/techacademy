@@ -194,3 +194,20 @@ resource "ibm_tg_connection" "pvs_workspace_a" {
   provider            = ibm.vpc
 }
 
+# Connection for PowerVS Workspace B
+resource "ibm_tg_connection" "pvs_workspace_b" {
+  gateway             = ibm_tg_gateway.main_tgw.id
+  name                = "powervs_workspace_b"
+  network_type        = "power_virtual_server"
+  network_id          = ibm_resource_instance.pvs_workspace_b.id
+  provider            = ibm.vpc
+}
+
+# Connection for VPC
+resource "ibm_tg_connection" "vpc" {
+  gateway             = ibm_tg_gateway.main_tgw.id
+  name                = "vpc"
+  network_type        = "vpc"
+  network_id          = ibm_is_vpc.admin_vpc.id
+  provider            = ibm.vpc
+}
