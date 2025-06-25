@@ -191,6 +191,6 @@ resource "ibm_tg_connection" "pvs_workspace_a" {
   name                = "powervs_workspace_a"
   network_type        = "power_virtual_server"
   network_id          = ibm_resource_instance.powervs_workspace_a.id
-  provider            = ibm.vpc
+  provider            = ibm.a
 }
 
