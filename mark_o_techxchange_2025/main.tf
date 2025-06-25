@@ -208,6 +208,6 @@ resource "ibm_tg_connection" "vpc" {
   gateway             = ibm_tg_gateway.main_tgw.id
   name                = "vpc"
   network_type        = "vpc"
-  network_id          = ibm_is_vpc.admin_vpc.id
+  network_id          = ibm_is_vpc.admin_vpc.crn
   provider            = ibm.vpc
 }
