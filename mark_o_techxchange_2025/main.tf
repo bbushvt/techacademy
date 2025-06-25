@@ -190,7 +190,7 @@ resource "ibm_tg_connection" "pvs_workspace_a" {
   gateway             = ibm_tg_gateway.main_tgw.id
   name                = "powervs_workspace_a"
   network_type        = "power_virtual_server"
-  network_id          = ibm_resource_instance.powervs_workspace_a.id
-  provider            = ibm.a
+  network_id          = ibm_resource_instance.pvs_workspace_a.id
+  provider            = ibm.vpc
 }
 
