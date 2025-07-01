@@ -19,7 +19,7 @@ variable "workspace_name_b" {
 }
 
 variable "powervs_workspace_a_instance_name" {
-  default = "AIX Prod Instance"
+  default = "aix_prod_instance"
 }
 
 variable "storage_type_a" {
