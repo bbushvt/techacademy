@@ -10,12 +10,16 @@ variable "pvs_region_b" {
 
 variable "workspace_name_a" {
   description = "The name of the workspace to create in region a"
-  default = "pvs_workspace_a"
+  default = "Production"
 }
 
 variable "workspace_name_b" {
   description = "The name of the workspace to create in region b"
-  default = "pvs_workspace_b"
+  default = "DR"
+}
+
+variable "powervs_workspace_a_instance_name" {
+  default = "AIX Prod Instance"
 }
 
 variable "storage_type_a" {
@@ -65,3 +69,6 @@ variable "vpc_zone" {
   default = "us-east-1"  
 }
 
+variable "vsi_instance_name" {
+  default = "dra-jumpserver"
+}

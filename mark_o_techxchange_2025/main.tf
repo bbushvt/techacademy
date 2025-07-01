@@ -42,7 +42,7 @@ resource  "ibm_pi_key" "ssh_key_a" {
 resource "ibm_pi_instance" "test-instance" {
     pi_memory             = "4"
     pi_processors         = "2"
-    pi_instance_name      = "test-vm"
+    pi_instance_name      = var.powervs_workspace_a_instance_name
     pi_proc_type          = "shared"
     pi_image_id           = "91414a26-212a-4780-83cf-330f192f2225"
     pi_key_pair_name      = ibm_pi_key.ssh_key_a.name
@@ -87,12 +87,12 @@ resource "ibm_pi_network" "pvs_network_workspace_b" {
 }
 
 # Create the ssh key in the workspace in region B
-resource  "ibm_pi_key" "ssh_key_b" {
-  pi_key_name          = "techxchange_ssh_key_b"
-  pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_b.guid
-  pi_ssh_key           = var.ssh_key_rsa
-  provider             = ibm.b
-}
+# resource  "ibm_pi_key" "ssh_key_b" {
+#   pi_key_name          = "techxchange_ssh_key_b"
+#   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_b.guid
+#   pi_ssh_key           = var.ssh_key_rsa
+#   provider             = ibm.b
+# }
 
 
 ########################################################
@@ -163,7 +163,7 @@ resource "ibm_is_subnet" "test_vpc_main_zone_1" {
 
 # Create a VSI
 resource "ibm_is_instance" "instance1" {
-  name                = "instance1"
+  name                = var.vsi_instance_name
   image               = var.vpc_image_id
   profile             = var.vsi_profile
   primary_network_interface {
@@ -174,6 +174,11 @@ resource "ibm_is_instance" "instance1" {
   keys                = [ibm_is_ssh_key.vpc_ssh_key.id]
   resource_group      = data.ibm_resource_group.group.id
   provider            = ibm.vpc
+}
+
+resource "ibm_is_floating_ip" "vis_fip" {
+  name   = "vsi-fip"
+  target = ibm_is_instance.instance1.primary_network_interface[0].id
 }
 
 # Create the Transit Gateway
