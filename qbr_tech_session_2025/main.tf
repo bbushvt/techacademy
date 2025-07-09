@@ -192,6 +192,6 @@ resource "ibm_is_virtual_endpoint_gateway" "compass-us-east" {
   }
   vpc               = ibm_is_vpc.admin_vpc.id
   resource_group    = data.ibm_resource_group.group.id
-  security_groups   = [ibm_is_vpc.admin_vpc.security_group[0].id]
+  security_groups   = [ibm_is_vpc.admin_vpc.security_group[0].group_id]
   provider          = ibm.vpc
 }
