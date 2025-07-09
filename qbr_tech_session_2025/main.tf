@@ -3,7 +3,7 @@ data "ibm_resource_group" "group" {
   name = "cloud-techsales"
 }
 
-data "ibm_is_ssh_key" "bcbush-1pass" {
+data "ibm_is_ssh_key" "bcbush_1pass" {
   name = "bcbush-1pass"
 }
 
@@ -106,13 +106,13 @@ resource "ibm_is_network_acl" "test_vpc_main_acl_acl" {
   }
 }
 
-# Create the SSH key in the vpc
-resource "ibm_is_ssh_key" "vpc_ssh_key" {
-  name          = var.ssh_key_name
-  public_key    = var.ssh_key_rsa
-  type          = "rsa"
-  provider      = ibm.vpc
-}
+# # Create the SSH key in the vpc
+# resource "ibm_is_ssh_key" "vpc_ssh_key" {
+#   name          = var.ssh_key_name
+#   public_key    = var.ssh_key_rsa
+#   type          = "rsa"
+#   provider      = ibm.vpc
+# }
 
 # Create a subnet from the prefix and using the ACL we created
 resource "ibm_is_subnet" "test_vpc_main_zone_1" {
@@ -139,7 +139,7 @@ resource "ibm_is_instance" "instance1" {
   }
   vpc                 = ibm_is_vpc.admin_vpc.id
   zone                = var.vpc_zone
-  keys                = [ibm_is_ssh_key.vpc_ssh_key.id]
+  keys                = [data.ibm_is_ssh_key.bcbush_1pass.id]
   resource_group      = data.ibm_resource_group.group.id
   provider            = ibm.vpc
 }
