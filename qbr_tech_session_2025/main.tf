@@ -5,6 +5,7 @@ data "ibm_resource_group" "group" {
 
 data "ibm_is_ssh_key" "bcbush_1pass" {
   name = "bcbush-1pass"
+  provider = ibm.vpc
 }
 
 ########################################################
