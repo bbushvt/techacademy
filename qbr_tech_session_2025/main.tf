@@ -150,7 +150,7 @@ resource "ibm_tg_gateway" "main_tgw" {
   name                = "main_tgw"
   location            = var.vpc_region
   resource_group      = data.ibm_resource_group.group.id
-  global              = true
+  global              = false
   provider            = ibm.vpc
 }
 
@@ -170,4 +170,20 @@ resource "ibm_tg_connection" "vpc" {
   network_type        = "vpc"
   network_id          = ibm_is_vpc.admin_vpc.crn
   provider            = ibm.vpc
+}
+
+# Create the Compass by Cobalt Iron Virtual Private Endpoint Gateway
+resource "ibm_is_virtual_endpoint_gateway" "compass-us-east" {
+  name              = "compass-vpeg"
+  target {
+    crn             = "crn:v1:bluemix:public:compass:wdc06:::endpoint:vault04.private.us-east-2.compass.cobaltiron.com"
+    resource_type   = "provider_cloud_service"
+  }
+  ips {
+    name            = "compass_ip"
+    subnet          = ibm_is_subnet.test_vpc_main_zone_1.id
+  }
+  vpc               = ibm_is_vpc.admin_vpc.id
+  resource_group    = data.ibm_resource_group.group.id
+  provider          = ibm.vpc
 }

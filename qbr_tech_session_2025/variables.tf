@@ -5,11 +5,11 @@ variable "pvs_region_a" {
 
 variable "workspace_name_a" {
   description = "The name of the workspace to create in region a"
-  default = "Production"
+  default = "bcbush-qbr-pvs"
 }
 
 variable "powervs_workspace_a_instance_name" {
-  default = "aix_prod_instance"
+  default = "bcbush-qbr-aix"
 }
 
 variable "storage_type_a" {
@@ -20,7 +20,7 @@ variable "storage_type_a" {
 variable "ssh_key_name" {
   description = "Name of the ssh key to be used"
   type        = string
-  default     = "mysshkey"
+  default     = "bcbush-qbr-ssh"
 }
 
 variable "ssh_key_rsa" {
@@ -42,7 +42,7 @@ variable "vpc_region" {
 variable "vpc_name" {
   description = "The name of the VPC"
   type = string
-  default = "myvpc"
+  default = "bcbush-qbr-vpc"
 }
 
 variable "vpc_image_id" {
@@ -60,5 +60,5 @@ variable "vpc_zone" {
 }
 
 variable "vsi_instance_name" {
-  default = "jumpserver"
+  default = "bcbush-jumpserver"
 }
