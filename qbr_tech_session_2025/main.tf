@@ -1,12 +1,12 @@
 # Set the resource group
 data "ibm_resource_group" "group" {
-  name = "cloud-techsales"
+  name = "Default"
 }
 
-data "ibm_is_ssh_key" "bcbush_1pass" {
-  name = "bcbush-1pass"
-  provider = ibm.vpc
-}
+# data "ibm_is_ssh_key" "bcbush_1pass" {
+#   name = "bcbush-1pass"
+#   provider = ibm.vpc
+# }
 
 ########################################################
 # Workspace in data center A
