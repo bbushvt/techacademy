@@ -52,7 +52,7 @@ resource "ibm_pi_instance" "test-instance" {
     pi_instance_name      = var.powervs_workspace_a_instance_name
     pi_proc_type          = "shared"
     pi_image_id           = var.workspace_a_aix_image_id
-    pi_key_pair_name      = ibm_pi_key.ssh_key_a.id
+    pi_key_pair_name      = ibm_pi_key.ssh_key_a.name
     pi_sys_type           = "s1022"
     pi_cloud_instance_id  = ibm_resource_instance.pvs_workspace_a.guid
     pi_pin_policy         = "none"
