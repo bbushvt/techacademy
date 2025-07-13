@@ -62,6 +62,7 @@ resource "ibm_pi_instance" "test-instance" {
       ip_address          = "192.168.0.10"
     }
     provider              = ibm.pvs_a
+    depends_on = [ ibm_pi_key.ssh_key_a ]
 }
 
 # ########################################################
