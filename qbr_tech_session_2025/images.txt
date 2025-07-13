@@ -1,3 +1,4 @@
+# wdc06 powervs images
 86851946-54c0-40b7-ab85-42f6dd666b05   7100-05-09           /pcloud/v1/cloud-instances/492aa573eced4a84a9bcd85a30488382/stock-images/86851946-54c0-40b7-ab85-42f6dd666b05
 ffdd165c-627d-4bdc-8b4f-f47a2106406c   7200-05-09           /pcloud/v1/cloud-instances/492aa573eced4a84a9bcd85a30488382/stock-images/ffdd165c-627d-4bdc-8b4f-f47a2106406c
 91414a26-212a-4780-83cf-330f192f2225   7300-03-00           /pcloud/v1/cloud-instances/492aa573eced4a84a9bcd85a30488382/stock-images/91414a26-212a-4780-83cf-330f192f2225
@@ -18,3 +19,29 @@ bbbae131-b416-4ad3-97d2-6de7aaae9709   RHEL8-SP10-BYOL      /pcloud/v1/cloud-ins
 f4733f0e-2179-49d5-aa8d-13eb3aafac3e   RHEL9-SP4-BYOL       /pcloud/v1/cloud-instances/492aa573eced4a84a9bcd85a30488382/stock-images/f4733f0e-2179-49d5-aa8d-13eb3aafac3e
 580d6eda-f7c2-4de4-827c-51ec1f9bf491   SLES15-SP6           /pcloud/v1/cloud-instances/492aa573eced4a84a9bcd85a30488382/stock-images/580d6eda-f7c2-4de4-827c-51ec1f9bf491
 0b984cb1-27c8-4622-b95e-1cd3c369838b   SLES15-SP6-BYOL      /pcloud/v1/cloud-instances/492aa573eced4a84a9bcd85a30488382/stock-images/0b984cb1-27c8-4622-b95e-1cd3c369838b
+
+# dal10 powervs images
+a7fe1c5e-4cdb-41b5-bb4c-ab5eb8da397e   7100-05-09           /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/a7fe1c5e-4cdb-41b5-bb4c-ab5eb8da397e
+8d4e45c2-5520-464f-8016-45072c345a4e   7200-05-09           /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/8d4e45c2-5520-464f-8016-45072c345a4e
+42e479c8-7433-4c6f-8733-635298f9a9d5   7300-03-00           /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/42e479c8-7433-4c6f-8733-635298f9a9d5
+674f512c-acf4-4e3e-a147-040836687744   CentOS-Stream-10     /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/674f512c-acf4-4e3e-a147-040836687744
+f1f90e5f-1ce8-476d-9ee4-8e14bcf1d2c8   CentOS-Stream-9      /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/f1f90e5f-1ce8-476d-9ee4-8e14bcf1d2c8
+bfca5a48-b561-45d5-b50b-784dd10ac14f   IBMi-72-09-2924-12   /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/bfca5a48-b561-45d5-b50b-784dd10ac14f
+4151c252-2eda-49df-992f-9ff82ef6de58   IBMi-72-09-2984-12   /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/4151c252-2eda-49df-992f-9ff82ef6de58
+a08b4e8a-6d57-4007-a35e-a01f3f686a20   IBMi-73-13-2924-5    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/a08b4e8a-6d57-4007-a35e-a01f3f686a20
+7187661f-7610-4d98-b8d7-0fb86869ed4a   IBMi-73-13-2984-5    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/7187661f-7610-4d98-b8d7-0fb86869ed4a
+50a55e20-2c1c-4a68-970e-c4743f6b6e89   IBMi-74-11-2924-1    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/50a55e20-2c1c-4a68-970e-c4743f6b6e89
+b423f740-0adb-4669-b712-ad6189a52a83   IBMi-74-11-2984-1    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/b423f740-0adb-4669-b712-ad6189a52a83
+d6eaeb73-8c59-4db7-a0b6-e9a3fea5f065   IBMi-75-05-2924-1    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/d6eaeb73-8c59-4db7-a0b6-e9a3fea5f065
+bd5a0318-3e53-44f1-b837-3c26aaab2dfb   IBMi-75-05-2984-1    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/bd5a0318-3e53-44f1-b837-3c26aaab2dfb
+71bad1af-d873-4ee3-a5ec-c1bf25e17848   IBMi-76-00-2924-1    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/71bad1af-d873-4ee3-a5ec-c1bf25e17848
+8f8e9355-7ac6-425a-a18e-f31e9cbac304   IBMi-76-00-2984-1    /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/8f8e9355-7ac6-425a-a18e-f31e9cbac304
+d11587d3-252c-40b0-b159-0c4409c1123c   IBMi_COR-74-11-1     /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/d11587d3-252c-40b0-b159-0c4409c1123c
+03421336-5678-4e5a-934a-c330df9b600e   OCP-DHCP-SERVER      /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/03421336-5678-4e5a-934a-c330df9b600e
+2c386bb8-3638-4c1e-9520-d021c507cdd1   RHEL8-SP10           /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/2c386bb8-3638-4c1e-9520-d021c507cdd1
+b84608e5-6386-4830-8da4-aee40a4f8783   RHEL8-SP10-BYOL      /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/b84608e5-6386-4830-8da4-aee40a4f8783
+166e8065-8203-40e7-a1e2-c813bdf9cbf6   RHEL9-SP4            /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/166e8065-8203-40e7-a1e2-c813bdf9cbf6
+d94c408b-d6a3-4d3e-ab1e-b2be570967b7   RHEL9-SP4-BYOL       /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/d94c408b-d6a3-4d3e-ab1e-b2be570967b7
+90da1d99-8757-4b34-a4d6-d4fcb104de46   SLES15-SP6           /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/90da1d99-8757-4b34-a4d6-d4fcb104de46
+53460fab-003c-437a-a093-07a449206361   SLES15-SP6-BYOL      /pcloud/v1/cloud-instances/cceac9bb802747f187e963d600af69de/stock-images/53460fab-003c-437a-a093-07a449206361
+

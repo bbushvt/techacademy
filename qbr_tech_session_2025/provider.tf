@@ -45,16 +45,21 @@ locals {
 provider "ibm" {
     region              = lookup(local.ibm_powervs_zone_region_map, var.pvs_region_a, null)
     zone                = var.pvs_region_a
-    alias               = "a"
+    alias               = "pvs_a"
 }
 
 provider "ibm" {
     region              = lookup(local.ibm_powervs_zone_region_map, var.pvs_region_b, null)
     zone                = var.pvs_region_b
-    alias               = "b"
+    alias               = "pvs_b"
 }
 
 provider "ibm" {
-    region              = var.vpc_region
-    alias               = "vpc"
+    region              = var.vpc_zone_a
+    alias               = "vpc_a"
+}
+
+provider "ibm" {
+    region              = var.vpc_zone_b
+    alias               = "vpc_b"
 }

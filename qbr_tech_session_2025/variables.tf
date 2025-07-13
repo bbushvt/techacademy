@@ -1,11 +1,15 @@
 variable "pvs_region_a" {
   description = "Where to deploy the Power VS Workspace A"
-  default = "wdc06"
+  default = "dal10"
 }
 
 variable "workspace_name_a" {
   description = "The name of the workspace to create in region a"
   default = "bcbush-qbr-pvs"
+}
+
+variable "workspace_a_aix_image_id" {
+  default = "42e479c8-7433-4c6f-8733-635298f9a9d5"
 }
 
 variable "powervs_workspace_a_instance_name" {
@@ -46,7 +50,7 @@ variable "vpc_name" {
 }
 
 variable "vpc_image_id" {
-  default = "r014-2dfb4fd7-2af0-4df0-a8e1-97eaa04b6156"
+  default = "r014-e177f7ed-0077-413a-ae91-07fc79398ba4"
   description = "The image id used for the VSI in the VPC"
 }
 
@@ -55,8 +59,12 @@ variable "vsi_profile" {
   description = "The default profile to use, a cx2-2x4"
 }
 
-variable "vpc_zone" {
-  default = "us-east-1"  
+variable "vpc_zone_a" {
+  default = "us-south-1"  
+}
+
+variable "vpc_zone_b" {
+  default = "us-south-1"  
 }
 
 variable "vsi_instance_name" {
