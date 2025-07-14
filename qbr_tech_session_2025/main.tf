@@ -182,35 +182,36 @@ resource "ibm_is_subnet" "enterprise_vpc_main_zone_1" {
 }
 
 
-# # # Create the SSH key in the vpc
-# # resource "ibm_is_ssh_key" "vpc_ssh_key" {
-# #   name          = var.ssh_key_name
-# #   public_key    = var.ssh_key_rsa
-# #   type          = "rsa"
-# #   provider      = ibm.vpc
-# # }
+# Create the SSH key in the vpc
+resource "ibm_is_ssh_key" "vpc_ssh_key" {
+  name          = var.ssh_key_name
+  public_key    = var.ssh_key_rsa
+  type          = "rsa"
+  provider      = ibm.vpc_b
+}
 
-# # Create a VSI
-# resource "ibm_is_instance" "instance1" {
-#   name                = var.vsi_instance_name
-#   image               = var.vpc_image_id
-#   profile             = var.vsi_profile
-#   primary_network_interface {
-#     subnet            = ibm_is_subnet.test_vpc_main_zone_1.id
-#   }
-#   vpc                 = ibm_is_vpc.admin_vpc.id
-#   zone                = var.vpc_zone
-#   keys                = [data.ibm_is_ssh_key.bcbush_1pass.id]
-#   resource_group      = data.ibm_resource_group.group.id
-#   provider            = ibm.vpc
-# }
+# Create a VSI
+resource "ibm_is_instance" "instance1" {
+  name                = var.vsi_instance_name
+  image               = var.vpc_image_id
+  profile             = var.vsi_profile
+  primary_network_interface {
+    subnet            = ibm_is_subnet.enterprise_vpc_main_zone_1.id
+  }
+  vpc                 = ibm_is_vpc.enterprise_vpc.id
+  zone                = var.vpc_b_zone
+  keys                = [ibm_is_ssh_key.vpc_ssh_key.id]
+  resource_group      = data.ibm_resource_group.group.id
+  provider            = ibm.vpc_b
 
-# # Create the FIP for the VSI
-# resource "ibm_is_floating_ip" "vis_fip" {
-#   name                = "vsi-fip"
-#   target              = ibm_is_instance.instance1.primary_network_interface[0].id
-#   provider            = ibm.vpc
-# }
+}
+
+# Create the FIP for the VSI
+resource "ibm_is_floating_ip" "vis_fip" {
+  name                = "vsi-fip"
+  target              = ibm_is_instance.instance1.primary_network_interface[0].id
+  provider            = ibm.vpc_b
+}
 
 # # Create the Transit Gateway
 # resource "ibm_tg_gateway" "main_tgw" {
