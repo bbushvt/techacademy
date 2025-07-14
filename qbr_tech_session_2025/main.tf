@@ -69,7 +69,7 @@ resource "ibm_pi_instance" "test-instance" {
 # # VPC in region A
 # ########################################################
 
-# # Create the VPC
+# Create the VPC
 resource "ibm_is_vpc" "admin_vpc" {
   name                        = var.vpc_name
   resource_group              = data.ibm_resource_group.group.id

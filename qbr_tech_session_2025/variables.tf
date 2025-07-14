@@ -33,10 +33,20 @@ variable "ssh_key_rsa" {
   default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDK0BHNL2ct5XpfQtY4vMEfON7ac2H3+X6p885vFEPSKyJwLCqflrRE2bi+R7YBRwM54VZKFQ+K9t3GjZXnRmZ7Ob+c9E5viE778X9bZMx7Yk3yZ8/j/peJpLYrw8ya+PqlExhNc4IBGBkSdhyRZ0f52SyreYhMA5wYspYyN+qSlp1PrDZl5ih5USzlXmfUebaG4r3/ADORUOkHuIUlopBr+mxE4D/cMS+I5en4Epzi8u0VdR7IjOZ4YzsqJYIDKtGsg7cyif/vvQct9F1GpLsUyXnrS/iL90cDgfSvUuI9dkMfRD+hsLIRLMMUDrLHSBbpeJJ1SHuQpfVOmnzcyEIHTLfqd1W+EslKFpThkeQ4I7gn+N4CD7ZkdqYp65IWy7fkkQaHjVhFOMNrV8epje2aY80pQc1/6BsQwzUn9rewV+MQnMfG96gtL29/osE2QWoAtO2WEf3rONBmllqLugJZqd0JHd3CgjIkPKFg6aHPzZp8711GEKIdLhaOCni7j7y5u8Pqv/M7sDl9nlg8UZ9CMRWuINM39lpEu0S9PF1OLNca3ECC4A6cfi+BcEjzpGbi/AtzkelfIeB5aGPZllclikI9UDel2s+MRGNipWDGTzBnPr1PVzHFPmEnT3GbUUzzGCttTQS1hAAdIsnr1Ql8W1tX6otofe/7T2D0fZgpxw=="
 }
 
-variable "vpc_region" {
+variable "vpc_a_region" {
   description = "IBM Cloud Region where resources will be provisioned"
   type        = string
-  default     = "us-east"
+  default     = "us-south"
+  validation {
+    error_message = "Region must be in a supported IBM VPC region."
+    condition     = contains(["us-south", "us-east", "br-sao", "ca-tor", "eu-gb", "eu-de", "jp-tok", "jp-osa", "au-syd"], var.vpc_region)
+  }
+}
+
+variable "vpc_b_region" {
+  description = "IBM Cloud Region where resources will be provisioned"
+  type        = string
+  default     = "us-south"
   validation {
     error_message = "Region must be in a supported IBM VPC region."
     condition     = contains(["us-south", "us-east", "br-sao", "ca-tor", "eu-gb", "eu-de", "jp-tok", "jp-osa", "au-syd"], var.vpc_region)

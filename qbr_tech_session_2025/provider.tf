@@ -55,11 +55,11 @@ provider "ibm" {
 }
 
 provider "ibm" {
-    region              = var.vpc_zone_a
+    region              = var.vpc_a_region
     alias               = "vpc_a"
 }
 
 provider "ibm" {
-    region              = var.vpc_zone_b
+    region              = var.vpc_b_region
     alias               = "vpc_b"
 }
