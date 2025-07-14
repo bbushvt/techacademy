@@ -123,6 +123,35 @@ resource "ibm_is_subnet" "test_vpc_main_zone_1" {
   provider = ibm.vpc_a
 }
 
+# Create the VPN Gateway 
+resource "ibm_is_vpn_gateway" "admin_vpn_gateway" {
+  name                = "admin-vpn-gateway"
+  subnet              = ibm_is_subnet.admin_vpc.id
+  resource_group      = data.ibm_resource_group.group.id
+  mode                = "policy"
+  tags = []
+  timeouts {
+    delete            = "1h"
+  }
+  provider            = ibm.vpc_a
+}
+
+# Create the VPN Connection to the Enterprise VPC
+resource "ibm_is_vpn_gateway_connection" "admin_to_enterprise" {
+  name          = "admin-to-enterprise"
+  vpn_gateway   = ibm_is_vpn_gateway.admin_vpn_gateway.id
+  preshared_key = "MbgjpfaPv9QjBhigtoff"
+
+  local {
+    cidrs = [ibm_is_subnet.test_vpc_main_zone_1.ipv4_cidr_block]
+  }
+ 
+  peer {
+    address   = ibm_is_vpn_gateway.enterprise_vpn_gateway.public_ip_address
+    cidrs     = [ibm_is_subnet.enterprise_vpc_main_zone_1.ipv4_cidr_block]
+  }
+}
+
 # ########################################################
 # # VPC B
 # ########################################################
@@ -224,6 +253,22 @@ resource "ibm_is_vpn_gateway" "enterprise_vpn_gateway" {
     delete            = "1h"
   }
   provider            = ibm.vpc_b
+}
+
+# Create the VPN Connection to the Enterprise VPC
+resource "ibm_is_vpn_gateway_connection" "enterprise_to_admin" {
+  name          = "enterprise-to-admin"
+  vpn_gateway   = ibm_is_vpn_gateway.enterprise_vpn_gateway.id
+  preshared_key = "MbgjpfaPv9QjBhigtoff"
+
+  local {
+    cidrs = [ibm_is_subnet.enterprise_vpc_main_zone_1.ipv4_cidr_block]
+  }
+ 
+  peer {
+    address   = ibm_is_vpn_gateway.admin_vpn_gateway.public_ip_address
+    cidrs     = [ibm_is_subnet.test_vpc_main_zone_1.ipv4_cidr_block]
+  }
 }
 
 # # Create the Transit Gateway
