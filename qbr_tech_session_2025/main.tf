@@ -143,7 +143,7 @@ resource "ibm_is_vpn_gateway_connection" "admin_to_enterprise" {
   preshared_key = "MbgjpfaPv9QjBhigtoff"
 
   local {
-    cidrs = [ibm_is_subnet.test_vpc_main_zone_1.ipv4_cidr_block]
+    cidrs = ["192.168.0.0/24"]
   }
  
   peer {
@@ -288,7 +288,7 @@ resource "ibm_is_vpn_gateway_connection" "enterprise_to_admin" {
  
   peer {
     address   = ibm_is_vpn_gateway.admin_vpn_gateway.public_ip_address
-    cidrs     = [ibm_is_subnet.test_vpc_main_zone_1.ipv4_cidr_block]
+    cidrs     = ["192.168.0.0/24"]
   }
 }
 
