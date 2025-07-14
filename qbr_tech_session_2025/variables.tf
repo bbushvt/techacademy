@@ -66,7 +66,7 @@ variable "vpc_b_name" {
 }
 
 variable "vpc_image_id" {
-  default = "r014-e177f7ed-0077-413a-ae91-07fc79398ba4"
+  default = "r006-e1a644b8-c961-4388-9a82-fedcb73ad1f1"
   description = "The image id used for the VSI in the VPC"
 }
 
