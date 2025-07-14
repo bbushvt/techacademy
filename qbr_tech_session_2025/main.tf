@@ -126,7 +126,7 @@ resource "ibm_is_subnet" "test_vpc_main_zone_1" {
 # Create the VPN Gateway 
 resource "ibm_is_vpn_gateway" "admin_vpn_gateway" {
   name                = "admin-vpn-gateway"
-  subnet              = ibm_is_subnet.admin_vpc.id
+  subnet              = ibm_is_subnet.test_vpc_main_zone_1.id
   resource_group      = data.ibm_resource_group.group.id
   mode                = "policy"
   tags = []
