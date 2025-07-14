@@ -150,6 +150,15 @@ resource "ibm_is_vpn_gateway_connection" "admin_to_enterprise" {
     address   = ibm_is_vpn_gateway.enterprise_vpn_gateway.public_ip_address
     cidrs     = [ibm_is_subnet.enterprise_vpc_main_zone_1.ipv4_cidr_block]
   }
+  provider            = ibm.vpc_a
+}
+
+# Create the ingress routing table
+resource "ibm_is_vpc_routing_table" "admin_vpc_ingress_routing_table" {
+  vpc                           = ibm_is_vpc.admin_vpc.id
+  name                          = "admin-vpc-ingress-routing-table"
+  route_transit_gateway_ingress = true
+  accept_routes_from_resource_type = ["vpn_gateway", "transit_gateway"]
 }
 
 # ########################################################
