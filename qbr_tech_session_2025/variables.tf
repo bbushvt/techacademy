@@ -69,11 +69,11 @@ variable "vsi_profile" {
   description = "The default profile to use, a cx2-2x4"
 }
 
-variable "vpc_zone_a" {
+variable "vpc_a_zone" {
   default = "us-south-1"  
 }
 
-variable "vpc_zone_b" {
+variable "vpc_b_zone" {
   default = "us-south-1"  
 }
 

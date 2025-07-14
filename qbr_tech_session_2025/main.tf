@@ -81,7 +81,7 @@ resource "ibm_is_vpc" "admin_vpc" {
 resource "ibm_is_vpc_address_prefix" "test_vpc_test_vpc_zone_1_prefix" {
   name = "${var.vpc_name}-test-vpc-test-vpc-zone-1"
   vpc  = ibm_is_vpc.admin_vpc.id
-  zone = "${var.vpc_region}-1"
+  zone = var.vpc_a_zone
   cidr = "192.168.2.0/24"
   provider = ibm.vpc_a
 }
@@ -112,7 +112,7 @@ resource "ibm_is_network_acl" "test_vpc_main_acl_acl" {
 resource "ibm_is_subnet" "test_vpc_main_zone_1" {
   vpc             = ibm_is_vpc.admin_vpc.id
   name            = "test-vpc-main-zone-1"
-  zone            = "${var.vpc_region}-1"
+  zone            = var.vpc_a_zone
   resource_group  = data.ibm_resource_group.group.id
   network_acl     = ibm_is_network_acl.test_vpc_main_acl_acl.id
   ipv4_cidr_block = "192.168.2.0/24"
