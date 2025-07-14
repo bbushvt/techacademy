@@ -23,19 +23,19 @@ resource "ibm_resource_instance" "pvs_workspace_a" {
 }
 
 # Create a network in the A workspace
-resource "ibm_pi_network" "pvs_network_workspace_a" {
-  pi_network_name      = "main"
-  pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
-  pi_network_type      = "vlan"
-  pi_cidr              = "192.168.0.0/24"
-  pi_dns               = ["8.8.8.8"]
-  pi_gateway           = "192.168.0.1"
-  pi_ipaddress_range {
-    pi_starting_ip_address  = "192.168.0.2"
-    pi_ending_ip_address    = "192.168.0.254"
-  }
-  provider             = ibm.pvs_a
-}
+# resource "ibm_pi_network" "pvs_network_workspace_a" {
+#   pi_network_name      = "main"
+#   pi_cloud_instance_id = ibm_resource_instance.pvs_workspace_a.guid
+#   pi_network_type      = "vlan"
+#   pi_cidr              = "192.168.0.0/24"
+#   pi_dns               = ["8.8.8.8"]
+#   pi_gateway           = "192.168.0.1"
+#   pi_ipaddress_range {
+#     pi_starting_ip_address  = "192.168.0.2"
+#     pi_ending_ip_address    = "192.168.0.254"
+#   }
+#   provider             = ibm.pvs_a
+# }
 
 # Create an SSH key 
 resource  "ibm_pi_key" "ssh_key_a" {
@@ -46,24 +46,24 @@ resource  "ibm_pi_key" "ssh_key_a" {
 }
 
 # Create an instance in workspace A
-resource "ibm_pi_instance" "test-instance" {
-    pi_memory             = "4"
-    pi_processors         = "2"
-    pi_instance_name      = var.powervs_workspace_a_instance_name
-    pi_proc_type          = "shared"
-    pi_image_id           = var.workspace_a_aix_image_id
-    pi_key_pair_name      = ibm_pi_key.ssh_key_a.name
-    pi_sys_type           = "s1022"
-    pi_cloud_instance_id  = ibm_resource_instance.pvs_workspace_a.guid
-    pi_pin_policy         = "none"
-    pi_health_status      = "WARNING"
-    pi_network {
-      network_id          = ibm_pi_network.pvs_network_workspace_a.network_id
-      ip_address          = "192.168.0.10"
-    }
-    provider              = ibm.pvs_a
-    depends_on = [ ibm_pi_key.ssh_key_a ]
-}
+# resource "ibm_pi_instance" "test-instance" {
+#     pi_memory             = "4"
+#     pi_processors         = "2"
+#     pi_instance_name      = var.powervs_workspace_a_instance_name
+#     pi_proc_type          = "shared"
+#     pi_image_id           = var.workspace_a_aix_image_id
+#     pi_key_pair_name      = ibm_pi_key.ssh_key_a.name
+#     pi_sys_type           = "s1022"
+#     pi_cloud_instance_id  = ibm_resource_instance.pvs_workspace_a.guid
+#     pi_pin_policy         = "none"
+#     pi_health_status      = "WARNING"
+#     pi_network {
+#       network_id          = ibm_pi_network.pvs_network_workspace_a.network_id
+#       ip_address          = "192.168.0.10"
+#     }
+#     provider              = ibm.pvs_a
+#     depends_on = [ ibm_pi_key.ssh_key_a ]
+# }
 
 # ########################################################
 # # VPC A 
@@ -210,6 +210,19 @@ resource "ibm_is_instance" "instance1" {
 resource "ibm_is_floating_ip" "vis_fip" {
   name                = "vsi-fip"
   target              = ibm_is_instance.instance1.primary_network_interface[0].id
+  provider            = ibm.vpc_b
+}
+
+# Create the VPN Gateway 
+resource "ibm_is_vpn_gateway" "enterprise_vpn_gateway" {
+  name                = "enterprise-vpn-gateway"
+  subnet              = ibm_is_subnet.enterprise_vpc_main_zone_1.id
+  resource_group      = data.ibm_resource_group.group.id
+  mode                = "policy"
+  tags = []
+  timeouts {
+    delete            = "1h"
+  }
   provider            = ibm.vpc_b
 }
 
