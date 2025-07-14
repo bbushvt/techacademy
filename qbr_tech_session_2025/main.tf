@@ -66,7 +66,7 @@ resource  "ibm_pi_key" "ssh_key_a" {
 # }
 
 # ########################################################
-# # VPC A 
+# # Admin VPC
 # ########################################################
 
 # Create the VPC
@@ -153,7 +153,7 @@ resource "ibm_is_vpn_gateway_connection" "admin_to_enterprise" {
 }
 
 # ########################################################
-# # VPC B
+# # Enterprise VPC
 # ########################################################
 
 # Create the VPC
@@ -192,6 +192,17 @@ resource "ibm_is_network_acl" "enterprise_vpc_main_acl_acl" {
     direction   = "outbound"
     name        = "outbound"
     source      = "0.0.0.0/0"
+  }
+}
+
+# add SSH rule to defualt security group
+resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
+  group     = ibm_is_vpc.enterprise_vpc.default_security_group
+  direction = "inbound"
+  remote    = "0.0.0.0/0"
+  tcp {
+    port_min = "22"
+    port_max = "22"
   }
 }
 
