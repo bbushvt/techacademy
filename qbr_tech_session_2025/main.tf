@@ -158,7 +158,8 @@ resource "ibm_is_vpc_routing_table" "admin_vpc_ingress_routing_table" {
   vpc                           = ibm_is_vpc.admin_vpc.id
   name                          = "admin-vpc-ingress-routing-table"
   route_transit_gateway_ingress = true
-  accept_routes_from_resource_type = ["vpn_gateway", "transit_gateway"]
+  accept_routes_from_resource_type = ["vpn_gateway"]
+  advertise_routes_to = ["transit_gateway"]
 }
 
 # ########################################################
