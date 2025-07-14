@@ -66,7 +66,7 @@ resource "ibm_pi_instance" "test-instance" {
 }
 
 # ########################################################
-# # VPC in region A
+# # VPC A 
 # ########################################################
 
 # Create the VPC
@@ -122,6 +122,65 @@ resource "ibm_is_subnet" "test_vpc_main_zone_1" {
   ]
   provider = ibm.vpc_a
 }
+
+# ########################################################
+# # VPC B
+# ########################################################
+
+# Create the VPC
+resource "ibm_is_vpc" "enterprise_vpc" {
+  name                        = var.vpc_b_name
+  resource_group              = data.ibm_resource_group.group.id
+  address_prefix_management   = "manual"
+  provider                    = ibm.vpc_b
+}
+
+# Create a prefix in the VPC
+resource "ibm_is_vpc_address_prefix" "enterprise_vpc_zone_1_prefix" {
+  name = "${var.vpc_b_name}-test-vpc-test-vpc-zone-1"
+  vpc  = ibm_is_vpc.enterprise_vpc.id
+  zone = var.vpc_b_zone
+  cidr = "192.168.3.0/24"
+  provider = ibm.vpc_b
+}
+
+# Create the network ACL
+resource "ibm_is_network_acl" "enterprise_vpc_main_acl_acl" {
+  name           = "enterprise-vpc-main-acl-acl"
+  vpc            = ibm_is_vpc.enterprise_vpc.id
+  resource_group = data.ibm_resource_group.group.id
+  provider = ibm.vpc_b
+  rules {
+    action      = "allow"
+    destination = "0.0.0.0/0"
+    direction   = "inbound"
+    name        = "inbound"
+    source      = "0.0.0.0/0"
+  }
+  rules {
+    action      = "allow"
+    destination = "0.0.0.0/0"
+    direction   = "outbound"
+    name        = "outbound"
+    source      = "0.0.0.0/0"
+  }
+}
+
+# Create a subnet from the prefix and using the ACL we created
+resource "ibm_is_subnet" "enterprise_vpc_main_zone_1" {
+  vpc             = ibm_is_vpc.enterprise_vpc.id
+  name            = "enterprise-vpc-main-zone-1"
+  zone            = var.vpc_b_zone
+  resource_group  = data.ibm_resource_group.group.id
+  network_acl     = ibm_is_network_acl.enterprise_vpc_main_acl_acl.id
+  ipv4_cidr_block = "192.168.3.0/24"
+  tags = []
+  depends_on = [
+    ibm_is_vpc_address_prefix.enterprise_vpc_zone_1_prefix
+  ]
+  provider = ibm.vpc_b
+}
+
 
 # # # Create the SSH key in the vpc
 # # resource "ibm_is_ssh_key" "vpc_ssh_key" {

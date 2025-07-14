@@ -59,6 +59,12 @@ variable "vpc_name" {
   default = "bcbush-qbr-vpc"
 }
 
+variable "vpc_b_name" {
+  description = "The name of the VPC"
+  type = string
+  default = "bcbush-qbr-enterprise"
+}
+
 variable "vpc_image_id" {
   default = "r014-e177f7ed-0077-413a-ae91-07fc79398ba4"
   description = "The image id used for the VSI in the VPC"
