@@ -110,6 +110,7 @@ resource "ibm_is_instance" "nat_gateway_vsi" {
   profile             = var.vsi_profile
   primary_network_interface {
     subnet            = ibm_is_subnet.nat_gateway_sn.id
+    allow_ip_spoofing = true
   }
   vpc                 = ibm_is_vpc.nat_gateway_vpc.id
   zone                = "${var.nat_gateway_region}-${var.zone}"
