@@ -72,7 +72,7 @@ variable "ssh_key" {
 
 variable "vsi_image_id" {
   default     = ""
-  description = "The image id used for the VSI.  Leave blank to auto select"
+  description = "The image id used for the VSI.  LEAVE BLANK TO AUTO SELECT"
 }
 
 variable "vsi_profile" {
