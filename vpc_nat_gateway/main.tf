@@ -71,7 +71,7 @@ resource "ibm_is_vpc_routing_table_route" "quad_zero_route" {
   vpc           = ibm_is_vpc.nat_gateway_vpc.id
   routing_table = ibm_is_vpc_routing_table.nat_gateway_vpc_ingress_routing_table.routing_table
   zone          = "${var.nat_gateway_region}-${var.zone}"
-  name          = "${var.base_name}-quad_zero_route"
+  name          = "${var.base_name}-quad-zero-route"
   destination   = "0.0.0.0/0"
   action        = "deliver"
   advertise     = true
