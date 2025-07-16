@@ -18,9 +18,9 @@ resource "ibm_is_vpc" "nat_gateway_vpc" {
 
 # Create a prefix in the VPC
 resource "ibm_is_vpc_address_prefix" "nat_gateway_prefix" {
-  name = "${var.base_name}-prefix-zone-1"
+  name = "${var.base_name}-prefix-zone-${var.zone}"
   vpc  = ibm_is_vpc.nat_gateway_vpc.id
-  zone = "${var.nat_gateway_region}-${zone}"
+  zone = "${var.nat_gateway_region}-${var.one}"
   cidr = var.cidr_block
 }
 
@@ -49,7 +49,7 @@ resource "ibm_is_network_acl" "nat_gateway_acl" {
 resource "ibm_is_subnet" "nat_gateway_sn" {
   vpc             = ibm_is_vpc.nat_gateway_vpc.id
   name            = "${var.base_name}-main-sn"
-  zone            = "${var.nat_gateway_region}-${zone}"
+  zone            = "${var.nat_gateway_region}-${var.zone}"
   resource_group  = data.ibm_resource_group.group.id
   network_acl     = ibm_is_network_acl.nat_gateway_acl.id
   ipv4_cidr_block = var.cidr_block
@@ -94,7 +94,7 @@ resource "ibm_is_instance" "nat_gateway_vsi" {
     subnet            = ibm_is_subnet.nat_gateway_sn.id
   }
   vpc                 = ibm_is_vpc.nat_gateway_vpc.id
-  zone                = "${var.nat_gateway_region}-${zone}"
+  zone                = "${var.nat_gateway_region}-${var.zone}"
   keys                = [ibm_is_ssh_key.vpc_ssh_key.id]
   resource_group      = data.ibm_resource_group.group.id
   user_data           = var.user_data
