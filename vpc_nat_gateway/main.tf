@@ -67,6 +67,17 @@ resource "ibm_is_vpc_routing_table" "nat_gateway_vpc_ingress_routing_table" {
   advertise_routes_to = ["transit_gateway"]
 }
 
+resource "ibm_is_vpc_routing_table_route" "quad_zero_route" {
+  vpc           = ibm_is_vpc.nat_gateway_vpc.id
+  routing_table = ibm_is_vpc_routing_table.nat_gateway_vpc_ingress_routing_table.routing_table
+  zone          = "${var.nat_gateway_region}-${var.zone}"
+  name          = "${var.base_name}-quad_zero_route"
+  destination   = "0.0.0.0/0"
+  action        = "deliver"
+  advertise     = true
+  next_hop      = ibm_is_instance.nat_gateway_vsi.primary_network_interface[0].primary_ip[0].address
+}
+
 # add SSH rule to defualt security group
 resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
   group     = ibm_is_vpc.nat_gateway_vpc.default_security_group
