@@ -89,6 +89,13 @@ resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
   }
 }
 
+# add the allowed internal CIDR rule to defualt security group
+resource "ibm_is_security_group_rule" "allowed_internal_cidrs" {
+  group     = ibm_is_vpc.nat_gateway_vpc.default_security_group
+  direction = "inbound"
+  remote    = var.allowed_internal_cidr
+}
+
 # Create the SSH key in the vpc
 resource "ibm_is_ssh_key" "vpc_ssh_key" {
   name          = "${var.base_name}-ssh-key"

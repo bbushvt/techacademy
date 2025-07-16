@@ -92,3 +92,8 @@ iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
 iptables-save > /etc/iptables/rules.v4
 EOF
 }
+
+variable "allowed_internal_cidr" {
+  description = "This should be the internal CIDR will allow devices to reach the NAT Gateway"
+  type = string
+}
