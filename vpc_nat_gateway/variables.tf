@@ -70,13 +70,9 @@ variable "ssh_key" {
   }
 }
 
-variable "vpc_image_id" {
-  #default     = lookup(local.image_id_by_region, var.nat_gateway_region, "")
-  description = "The image id used for the VSI in the VPC"
-  validation {
-    condition     = var.vpc_image_id != ""
-    error_message = "The vpc image id cannot be an empty string."
-  }
+variable "vsi_image_id" {
+  default     = ""
+  description = "The image id used for the VSI.  Leave blank to auto select"
 }
 
 variable "vsi_profile" {

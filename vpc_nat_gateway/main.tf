@@ -88,7 +88,7 @@ resource "ibm_is_ssh_key" "vpc_ssh_key" {
 # Create a VSI
 resource "ibm_is_instance" "nat_gateway_vsi" {
   name                = "${var.base_name}-vsi"
-  image               = var.vpc_image_id
+  image               = var.vsi_image_id == "" ? lookup(local.image_id_by_region, var.nat_gateway_region, "") : var.vsi_image_id
   profile             = var.vsi_profile
   primary_network_interface {
     subnet            = ibm_is_subnet.nat_gateway_sn.id
