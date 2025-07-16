@@ -20,7 +20,7 @@ resource "ibm_is_vpc" "nat_gateway_vpc" {
 resource "ibm_is_vpc_address_prefix" "nat_gateway_prefix" {
   name = "${var.base_name}-prefix-zone-${var.zone}"
   vpc  = ibm_is_vpc.nat_gateway_vpc.id
-  zone = "${var.nat_gateway_region}-${var.one}"
+  zone = "${var.nat_gateway_region}-${var.zone}"
   cidr = var.cidr_block
 }
 
