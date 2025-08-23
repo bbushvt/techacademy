@@ -39,6 +39,7 @@ resource "ibm_pi_instance" "pvs_workspace_a_aix_lpar" {
     pi_cloud_instance_id  = ibm_resource_instance.pvs_workspace_a.guid
     pi_pin_policy         = "none"
     pi_health_status      = "WARNING"
+    pi_storage_type       = var.workspace_a_storage_tier
     pi_network {
       network_id          = ibm_pi_network.pvs_workspace_a_network.network_id
       ip_address          = var.workspace_a_system_ip_address

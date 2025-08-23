@@ -47,3 +47,8 @@ variable "workspace_a_system_ip_address" {
   description = "The IP address to use for the AIX lpar (needs to be in the subnet being created)"
   default = "192.168.0.10"
 }
+
+variable "workspace_a_storage_tier" {
+  description = "The storage tier to use for the disk on the LPAR"
+  default = "tier5k"
+}
