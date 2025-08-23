@@ -39,8 +39,8 @@ variable "workspace_a_aix_image_id" {
 }
 
 variable "workspace_a_system_type" {
-  description = "The type of system to deploy (S922/S1022/S1122)"
-  default = "S1022"
+  description = "The type of system to deploy (s922/s1022/s1122)"
+  default = "s1022"
 }
 
 variable "workspace_a_system_ip_address" {

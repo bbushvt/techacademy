@@ -10,7 +10,6 @@ resource "ibm_resource_instance" "pvs_workspace_a" {
   provider          = ibm.pvs_a
 }
 
-
 # Create a network in the workspace a
 resource "ibm_pi_network" "pvs_workspace_a_network" {
   pi_network_name      = var.workspace_a_subnet_name
