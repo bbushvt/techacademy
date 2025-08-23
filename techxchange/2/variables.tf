@@ -64,7 +64,7 @@ variable "mgmt_vpc_region" {
   default     = "us-east"
   validation {
     error_message = "Region must be in a supported IBM VPC region."
-    condition     = contains(["us-south", "us-east", "br-sao", "ca-tor", "eu-gb", "eu-de", "jp-tok", "jp-osa", "au-syd"], var.vpc_a_region)
+    condition     = contains(["us-south", "us-east", "br-sao", "ca-tor", "eu-gb", "eu-de", "jp-tok", "jp-osa", "au-syd"], var.mgmt_vpc_region)
   }
 }
 
