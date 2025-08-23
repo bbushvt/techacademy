@@ -1,7 +1,10 @@
 locals {
+  # Map PowerVS data centers to regions
   ibm_powervs_zone_region_map = {
     "lon04"    = "lon"
     "lon06"    = "lon"
+    "mad02"    = "mad"
+    "mad04"    = "mad"
     "eu-de-1"  = "eu-de"
     "eu-de-2"  = "eu-de"
     "tor01"    = "tor"
@@ -11,44 +14,20 @@ locals {
     "syd04"    = "syd"
     "syd05"    = "syd"
     "sao01"    = "sao"
+    "sao04"    = "sao"
     "us-south" = "us-south"
     "dal10"    = "us-south"
     "dal12"    = "us-south"
+    "dal14"    = "us-south"
     "us-east"  = "us-east"
-  }
-
-  ibm_powervs_zone_cloud_region_map = {
-    "syd04"    = "au-syd"
-    "syd05"    = "au-syd"
-    "eu-de-1"  = "eu-de"
-    "eu-de-2"  = "eu-de"
-    "lon04"    = "eu-gb"
-    "lon06"    = "eu-gb"
-    "tok04"    = "jp-tok"
-    "tor01"    = "ca-tor"
-    "osa21"    = "jp-osa"
-    "sao01"    = "br-sao"
-    "mon01"    = "ca-tor"
-    "us-south" = "us-south"
-    "dal10"    = "us-south"
-    "dal12"    = "us-south"
-    "us-east"  = "us-east"
+    "wdc06"    = "us-east"
+    "wdc07"    = "us-east"
   }
 }
 
+# The provider we'll use for deploying PowerVS resources
 provider "ibm" {
-    region              = lookup(local.ibm_powervs_zone_region_map, var.pvs_region_a, null)
-    zone                = var.pvs_region_a
-    alias               = "a"
-}
-
-provider "ibm" {
-    region              = lookup(local.ibm_powervs_zone_region_map, var.pvs_region_b, null)
-    zone                = var.pvs_region_b
-    alias               = "b"
-}
-
-provider "ibm" {
-    region              = var.vpc_region
-    alias               = "vpc"
+    region              = lookup(local.ibm_powervs_zone_region_map, var.pvs_data_center, null)
+    zone                = var.pvs_data_center
+    alias               = "pvs_a"
 }

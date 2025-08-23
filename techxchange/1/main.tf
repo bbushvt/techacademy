@@ -1,18 +1,13 @@
 data "ibm_resource_group" "default" {
   name = "Default"
 }
-
-data "ibm_resource_group" "cloud_techsales" {
-  name = "cloud-techsales"
-}
-
 resource "ibm_resource_instance" "pvs_workspace_a" {
-  name              = var.workspace_name_a
+  name              = var.workspace_a_name
   service           = "power-iaas"
-  location          = var.pvs_region_a
+  location          = var.pvs_data_center
   plan              = "power-virtual-server-group"
-  resource_group_id = data.ibm_resource_group.cloud_techsales.id
-  provider          = ibm.a
+  resource_group_id = data.ibm_resource_group.default.id
+  provider          = ibm.pvs_a
 }
 
 

@@ -1,0 +1,30 @@
+Lab Steps
+1. Get the student to connect to their Windows Jumpserver
+2. Introduce students to Schematics and PowerVS
+3. Show diagram of what will be deployed in IBM Cloud
+4. Have students create Schematics workspace in their account
+5. Run Schematics to deploy the first environment
+    - Create PowerVS workspace
+    - Create subnet in PowerVS
+    - Create SSH key in PowerVS
+    - Create Aix LPAR in PowerVS
+6. Walk through the code sections with a discription of what that section of code is doing
+7. Show a diagram of the next state
+8. Modify the Schematics workspace to simuilate changes to the codebase
+    - Create VPC
+    - Create VPC prefix
+    - Create VPC subnet
+    - Create SSH key
+    - Deploy VPC VSI (Ubuntu)
+    - Create FIP and associate it with the VSI
+    - Create Local TGW
+    - Connect VPC and PowerVS workspaces to it
+9. Run the new Schematics code
+10. Walk through the code changes
+11. Have student connect through the jump server created in the second deployment to connect to the AIX server in PowerVS
+12. Have the student destroy the Schematics deployment
+13. Have the student destroy the Schematics workspace
+
+
+
+
