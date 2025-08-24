@@ -111,6 +111,8 @@ resource "ibm_is_security_group_rule" "sg_ssh_rule" {
     port_min = "22"
     port_max = "22"
   }
+  depends_on = [ibm_is_vpc.mgmt_vpc]
+  provider = ibm.mgmt_vpc
 }
 
 # Create the SSH key in the vpc
