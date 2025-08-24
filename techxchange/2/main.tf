@@ -138,3 +138,36 @@ resource "ibm_is_instance" "jumpserver" {
   provider            = ibm.mgmt_vpc
 
 }
+
+# Create the FIP for the VSI
+resource "ibm_is_floating_ip" "vis_fip" {
+  name                = "mgmt-vsi-fip"
+  target              = ibm_is_instance.jumpserver.primary_network_interface[0].id
+  provider            = ibm.mgmt_vpc
+}
+
+# Create the Transit Gateway
+resource "ibm_tg_gateway" "main_tgw" {
+  name                = "main-tgw"
+  location            = var.mgmt_vpc_region
+  resource_group      = data.ibm_resource_group.default.id
+  global              = false
+  provider            = ibm.mgmt_vpc
+}
+
+resource "ibm_tg_connection" "pvs_workspace_a" {
+  gateway             = ibm_tg_gateway.main_tgw.id
+  name                = "powervs_workspace_a"
+  network_type        = "power_virtual_server"
+  network_id          = ibm_resource_instance.pvs_workspace_a.id
+  provider            = ibm.mgmt_vpc
+}
+
+# Connection for VPC
+resource "ibm_tg_connection" "vpc" {
+  gateway             = ibm_tg_gateway.main_tgw.id
+  name                = "vpc"
+  network_type        = "vpc"
+  network_id          = ibm_is_vpc.mgmt_vpc.crn
+  provider            = ibm.mgmt_vpc
+}
