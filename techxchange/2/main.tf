@@ -67,7 +67,7 @@ resource "ibm_is_vpc_address_prefix" "mgmt_vpc_prefix" {
 
 # Create the network ACL for the management vpc
 resource "ibm_is_network_acl" "mgmt_vpc_main_acl" {
-  name           = "mgmt_vpc_main_acl"
+  name           = "mgmt-vpc-main-acl"
   vpc            = ibm_is_vpc.mgmt_vpc.id
   resource_group = data.ibm_resource_group.default.id
   rules {
